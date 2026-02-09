@@ -151,6 +151,14 @@ npm run test          # Vitest
 npm run format:check  # Prettier
 ```
 
+## Git Workflow
+
+- **Feature branches for all work** — e.g., `phase-3/public-blog`
+- **Pull requests for all merges**, even solo — squash merge to `main`
+- **Each phase gets its own PR(s)** to create a readable git history
+- Conventional commit messages (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`)
+- Phases 1-2 were committed directly to `main` (pre-workflow). PRs start from Phase 3 onward.
+
 ## CI Environment
 
 The build job in CI sets placeholder values for client env vars because `src/lib/env.ts` validation runs during Next.js prerendering:

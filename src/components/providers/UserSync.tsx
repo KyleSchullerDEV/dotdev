@@ -17,9 +17,22 @@ export function UserSync({ children }: { children: React.ReactNode }) {
         workosId: user.id,
         email: user.email,
         name: `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim() || undefined,
-      }).catch((error) => {
-        console.error("Failed to sync user:", error);
-      });
+      })
+        .then(() => {
+          import("posthog-js")
+            .then(({ default: posthog }) => {
+              posthog.identify(user.id, {
+                email: user.email,
+                name: `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim() || undefined,
+              });
+            })
+            .catch(() => {
+              // PostHog not available — silently skip
+            });
+        })
+        .catch((error) => {
+          console.error("Failed to sync user:", error);
+        });
     }
   }, [isAuthenticated, user, syncUser]);
 

@@ -11,6 +11,7 @@ export default authkitMiddleware({
       "/sign-in",
       "/sign-up",
       "/sign-out",
+      "/ingest/(.*)",
     ],
   },
 });

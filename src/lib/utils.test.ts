@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { slugify, formatDate } from "./utils";
+import { slugify, formatDate, readingTime } from "./utils";
 
 describe("slugify", () => {
   it("converts text to lowercase", () => {
@@ -36,5 +36,25 @@ describe("formatDate", () => {
   it("formats a timestamp", () => {
     const timestamp = new Date("2025-06-01").getTime();
     expect(formatDate(timestamp)).toBe("1 June 2025");
+  });
+});
+
+describe("readingTime", () => {
+  it("returns 1 min read for short text", () => {
+    expect(readingTime("Hello world")).toBe("1 min read");
+  });
+
+  it("estimates correctly for longer text", () => {
+    const words = Array(400).fill("word").join(" ");
+    expect(readingTime(words)).toBe("2 min read");
+  });
+
+  it("rounds to nearest minute", () => {
+    const words = Array(500).fill("word").join(" ");
+    expect(readingTime(words)).toBe("3 min read");
+  });
+
+  it("handles empty string", () => {
+    expect(readingTime("")).toBe("1 min read");
   });
 });

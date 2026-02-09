@@ -21,12 +21,16 @@ const clientEnvSchema = z.object({
     .url(
       "NEXT_PUBLIC_WORKOS_REDIRECT_URI must be a valid URL (e.g. http://localhost:3000/callback)"
     ),
+  NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
+  NEXT_PUBLIC_POSTHOG_HOST: z.string().url().optional(),
 });
 
 function validateClientEnv() {
   const result = clientEnvSchema.safeParse({
     NEXT_PUBLIC_CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
     NEXT_PUBLIC_WORKOS_REDIRECT_URI: process.env.NEXT_PUBLIC_WORKOS_REDIRECT_URI,
+    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY || undefined,
+    NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST || undefined,
   });
 
   if (!result.success) {

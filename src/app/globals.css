@@ -1,1 +1,183 @@
 @import "tailwindcss";
+
+/* ==========================================================================
+   Design System — Colour Tokens
+   Warm stone palette with blue accent. CSS custom properties for future
+   dark mode support. Tailwind CSS v4 @theme directive.
+   ========================================================================== */
+
+@theme {
+  --color-bg: #fafaf9;
+  --color-bg-secondary: #f5f5f4;
+  --color-text: #1c1917;
+  --color-text-secondary: #57534e;
+  --color-text-tertiary: #a8a29e;
+  --color-border: #e7e5e4;
+  --color-border-secondary: #d6d3d1;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-code-bg: #1e1e2e;
+  --color-callout-info-bg: #eff6ff;
+  --color-callout-info-border: #3b82f6;
+  --color-callout-warning-bg: #fffbeb;
+  --color-callout-warning-border: #f59e0b;
+  --color-callout-error-bg: #fef2f2;
+  --color-callout-error-border: #ef4444;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+@layer base {
+  body {
+    @apply bg-bg text-text;
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-text font-semibold tracking-tight;
+  }
+
+  /* Links */
+  a {
+    @apply text-accent hover:text-accent-hover transition-colors;
+  }
+
+  /* Focus ring — visible only on keyboard navigation */
+  :focus-visible {
+    @apply outline-accent outline-2 outline-offset-2;
+  }
+}
+
+/* ==========================================================================
+   Skip Link — visually hidden until focused
+   ========================================================================== */
+
+.skip-link {
+  @apply bg-accent absolute -top-full left-4 z-[100] rounded-b-md px-4 py-2 text-sm font-medium text-white transition-[top];
+}
+
+.skip-link:focus {
+  @apply top-0;
+}
+
+/* ==========================================================================
+   Prose — MDX article content styling
+   ========================================================================== */
+
+.prose {
+  @apply text-text mx-auto max-w-2xl text-lg leading-relaxed;
+}
+
+.prose h1 {
+  @apply mt-12 mb-4 text-3xl font-bold sm:text-4xl;
+}
+
+.prose h2 {
+  @apply mt-10 mb-3 text-2xl font-semibold;
+}
+
+.prose h3 {
+  @apply mt-8 mb-3 text-xl font-semibold;
+}
+
+.prose h4 {
+  @apply mt-6 mb-2 text-lg font-semibold;
+}
+
+.prose p {
+  @apply mb-6;
+}
+
+.prose ul,
+.prose ol {
+  @apply mb-6 pl-6;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose ol {
+  @apply list-decimal;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply border-border-secondary text-text-secondary my-6 border-l-4 pl-4 italic;
+}
+
+.prose a {
+  @apply font-medium underline underline-offset-2;
+}
+
+.prose hr {
+  @apply border-border my-10;
+}
+
+.prose img {
+  @apply my-6 rounded-lg;
+}
+
+.prose strong {
+  @apply text-text font-semibold;
+}
+
+/* Inline code */
+.prose :not(pre) > code {
+  @apply bg-bg-secondary rounded px-1.5 py-0.5 text-[0.875em] font-medium;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* Code blocks */
+.prose pre {
+  @apply my-6 overflow-x-auto rounded-lg p-4 text-sm leading-relaxed;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+.prose table {
+  @apply my-6 w-full border-collapse text-left text-base;
+}
+
+.prose th {
+  @apply border-border border-b-2 px-3 py-2 font-semibold;
+}
+
+.prose td {
+  @apply border-border border-b px-3 py-2;
+}
+
+/* Heading anchor links */
+.prose h2 a,
+.prose h3 a,
+.prose h4 a {
+  @apply text-inherit no-underline;
+}
+
+.prose h2 a:hover,
+.prose h3 a:hover,
+.prose h4 a:hover {
+  @apply text-accent;
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

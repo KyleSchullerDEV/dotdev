@@ -70,12 +70,12 @@ function AuthenticatedContent() {
             Admin Dashboard
           </Link>
         )}
-        <a
+        <Link
           href="/sign-out"
           className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
         >
           Sign out
-        </a>
+        </Link>
       </div>
     </div>
   );

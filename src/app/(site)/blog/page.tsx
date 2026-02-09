@@ -4,6 +4,7 @@ import { usePaginatedQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { PostCard } from "@/components/PostCard";
 import { PostCardSkeleton } from "@/components/PostCardSkeleton";
+import { Button } from "@/components/ui/Button";
 
 export default function BlogPage() {
   const {
@@ -41,13 +42,9 @@ export default function BlogPage() {
 
       {status === "CanLoadMore" && (
         <div className="mt-10 text-center">
-          <button
-            type="button"
-            onClick={() => loadMore(10)}
-            className="border-border text-text-secondary hover:border-border-secondary hover:text-text rounded-md border px-6 py-2.5 text-sm font-medium transition-colors"
-          >
+          <Button variant="secondary" size="lg" onPress={() => loadMore(10)}>
             Load more
-          </button>
+          </Button>
         </div>
       )}
 

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/components/ui/Link";
 
 export default function NotFound() {
   return (
@@ -9,7 +9,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="bg-accent hover:bg-accent-hover mt-8 rounded-md px-6 py-3 text-sm font-medium text-white no-underline transition-colors"
+        className="bg-accent pressed:bg-accent-hover hover:bg-accent-hover mt-8 rounded-md px-6 py-3 text-sm font-medium text-white no-underline transition-colors"
       >
         Back to home
       </Link>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useConvexAuth } from "convex/react";
 
 interface MobileNavProps {
   links: ReadonlyArray<{ readonly href: string; readonly label: string }>;
@@ -9,6 +10,7 @@ interface MobileNavProps {
 
 export function MobileNav({ links }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, isLoading } = useConvexAuth();
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -75,6 +77,28 @@ export function MobileNav({ links }: MobileNavProps) {
                   </Link>
                 </li>
               ))}
+              {/* Auth link — uses <a> tag for external redirect to WorkOS */}
+              {!isLoading && (
+                <li className="border-border mt-2 border-t pt-4">
+                  {isAuthenticated ? (
+                    <a
+                      href="/sign-out"
+                      className="text-text-secondary text-lg font-medium no-underline"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sign out
+                    </a>
+                  ) : (
+                    <a
+                      href="/sign-in"
+                      className="text-text-secondary text-lg font-medium no-underline"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sign in
+                    </a>
+                  )}
+                </li>
+              )}
             </ul>
           </nav>
         </div>

@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { usePaginatedQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { PostCard } from "@/components/PostCard";
 import { PostCardSkeleton } from "@/components/PostCardSkeleton";
+import { Link } from "@/components/ui/Link";
 
 export default function Home() {
   const { results: posts, status } = usePaginatedQuery(
@@ -25,7 +25,7 @@ export default function Home() {
         </p>
         <Link
           href="/blog"
-          className="bg-accent hover:bg-accent-hover mt-8 inline-block rounded-md px-6 py-3 text-sm font-medium text-white no-underline transition-colors"
+          className="bg-accent pressed:bg-accent-hover hover:bg-accent-hover mt-8 inline-block rounded-md px-6 py-3 text-sm font-medium text-white no-underline transition-colors"
         >
           Read the blog
         </Link>
@@ -35,7 +35,7 @@ export default function Home() {
       <section className="py-12">
         <div className="flex items-baseline justify-between">
           <h2 className="text-2xl font-semibold">Recent Posts</h2>
-          <Link href="/blog" className="text-sm font-medium">
+          <Link href="/blog" className="text-sm font-medium no-underline">
             View all
           </Link>
         </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MobileNav } from "./MobileNav";
+import { AuthNav } from "./AuthNav";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -17,21 +18,24 @@ export function Header() {
           Kyle Schuller
         </Link>
 
-        {/* Desktop nav */}
-        <nav aria-label="Main navigation" className="hidden sm:block">
-          <ul className="flex gap-6">
-            {navLinks.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="text-text-secondary hover:text-text text-sm font-medium no-underline transition-colors"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* Desktop nav + auth */}
+        <div className="hidden items-center gap-6 sm:flex">
+          <nav aria-label="Main navigation">
+            <ul className="flex gap-6">
+              {navLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-text-secondary hover:text-text text-sm font-medium no-underline transition-colors"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <AuthNav />
+        </div>
 
         {/* Mobile nav */}
         <MobileNav links={navLinks} />

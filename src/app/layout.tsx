@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { ConvexClientProvider } from "@/components/providers/ConvexClientProvider";
 import { PostHogProvider } from "@/components/providers/PostHogProvider";
 import { PostHogPageView } from "@/components/providers/PostHogPageView";
+import { RouterProvider } from "@/components/providers/RouterProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,12 +44,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ConvexClientProvider>
-          <PostHogProvider>
-            <Suspense fallback={null}>
-              <PostHogPageView />
-            </Suspense>
-            {children}
-          </PostHogProvider>
+          <RouterProvider>
+            <PostHogProvider>
+              <Suspense fallback={null}>
+                <PostHogPageView />
+              </Suspense>
+              {children}
+            </PostHogProvider>
+          </RouterProvider>
         </ConvexClientProvider>
       </body>
     </html>

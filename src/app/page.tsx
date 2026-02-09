@@ -22,18 +22,18 @@ export default function Home() {
       <Unauthenticated>
         <p className="mt-4 text-gray-600">Welcome to my blog.</p>
         <div className="mt-4 flex gap-2">
-          <Link
+          <a
             href="/sign-in"
             className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
           >
             Sign in
-          </Link>
-          <Link
+          </a>
+          <a
             href="/sign-up"
             className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
           >
             Sign up
-          </Link>
+          </a>
         </div>
       </Unauthenticated>
     </main>
@@ -70,12 +70,12 @@ function AuthenticatedContent() {
             Admin Dashboard
           </Link>
         )}
-        <Link
+        <a
           href="/sign-out"
           className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
         >
           Sign out
-        </Link>
+        </a>
       </div>
     </div>
   );

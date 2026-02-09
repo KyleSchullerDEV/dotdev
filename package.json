@@ -17,6 +17,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@workos-inc/authkit-nextjs": "^2.13.0",
+    "convex": "^1.31.7",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",

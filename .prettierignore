@@ -3,3 +3,4 @@ node_modules
 .vercel
 pnpm-lock.yaml
 package-lock.json
+convex/_generated

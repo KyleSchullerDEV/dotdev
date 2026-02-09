@@ -161,7 +161,7 @@ The build job in CI sets placeholder values for client env vars because `src/lib
 ## Known Issues / Gotchas
 
 - **Next.js 16 middleware deprecation**: `"middleware" file convention is deprecated, use "proxy" instead` — this is a warning only. WorkOS AuthKit relies on middleware; no action needed until authkit-nextjs updates.
-- **`next lint` broken in Next.js 16**: The `next lint` CLI subcommand has a parsing issue. We use `eslint src/` directly instead.
+- **`next lint` removed in Next.js 16**: The `next lint` subcommand was intentionally removed. The `next` CLI interprets `lint` as a project directory path, causing "Invalid project directory" errors. We use `eslint src/` directly — this is the documented migration path.
 - **Convex `_generated/` is committed**: These auto-generated types must be in git for CI builds and type resolution.
 - **`.prettierignore` excludes `convex/_generated`**: Auto-generated files don't match our formatting rules.
 - **4 low-severity npm audit vulns**: Transitive `cookie` dependency in WorkOS SDK. Not actionable on our end.

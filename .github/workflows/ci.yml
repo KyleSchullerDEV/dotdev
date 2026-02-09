@@ -41,11 +41,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: quality
     env:
-      # Convex generates types at build time that reference the deployment URL.
-      # In CI we don't have a real deployment, so we provide a dummy value
-      # to let the build complete. Auth validation and runtime calls are
-      # unaffected — this only satisfies the type-level import.
+      # Client env vars validated by src/lib/env.ts at import time.
+      # During CI builds, Next.js prerenders pages that import providers,
+      # triggering validation. These placeholder values satisfy the Zod
+      # schema without affecting runtime behaviour.
       NEXT_PUBLIC_CONVEX_URL: "https://placeholder.convex.cloud"
+      NEXT_PUBLIC_WORKOS_REDIRECT_URI: "http://localhost:3000/callback"
 
     steps:
       - name: Checkout code

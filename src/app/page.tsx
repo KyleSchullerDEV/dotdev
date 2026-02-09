@@ -2,14 +2,11 @@
 
 import { usePaginatedQuery } from "convex/react";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
-import { useAuth } from "@workos-inc/authkit-nextjs/components";
 import { api } from "../../convex/_generated/api";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import Link from "next/link";
 
 export default function Home() {
-  const { signOut } = useAuth();
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-4xl font-bold">kyleschuller.dev</h1>
@@ -19,7 +16,7 @@ export default function Home() {
       </AuthLoading>
 
       <Authenticated>
-        <AuthenticatedContent onSignOut={() => signOut()} />
+        <AuthenticatedContent />
       </Authenticated>
 
       <Unauthenticated>
@@ -43,7 +40,7 @@ export default function Home() {
   );
 }
 
-function AuthenticatedContent({ onSignOut }: { onSignOut: () => void }) {
+function AuthenticatedContent() {
   const { user, isAdmin } = useCurrentUser();
   const { results: posts, status } = usePaginatedQuery(
     api.posts.getPublished,
@@ -73,12 +70,12 @@ function AuthenticatedContent({ onSignOut }: { onSignOut: () => void }) {
             Admin Dashboard
           </Link>
         )}
-        <button
-          onClick={onSignOut}
+        <Link
+          href="/sign-out"
           className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
         >
           Sign out
-        </button>
+        </Link>
       </div>
     </div>
   );

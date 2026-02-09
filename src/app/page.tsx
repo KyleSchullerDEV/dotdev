@@ -4,7 +4,6 @@ import { usePaginatedQuery } from "convex/react";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { signOutAction } from "@/lib/actions";
 import Link from "next/link";
 
 export default function Home() {
@@ -71,14 +70,12 @@ function AuthenticatedContent() {
             Admin Dashboard
           </Link>
         )}
-        <form action={signOutAction}>
-          <button
-            type="submit"
-            className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
-          >
-            Sign out
-          </button>
-        </form>
+        <a
+          href="/sign-out"
+          className="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
+        >
+          Sign out
+        </a>
       </div>
     </div>
   );
